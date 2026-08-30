@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dịch vụ Facebook - Dương Ngô Đồng</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #151515;
+            color: white;
+            padding-bottom: 70px;
+        }
+
+        /* THANH TRÊN */
+        .top {
+            height: 70px;
+            background: #181818;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px;
+            border-bottom: 1px solid #333;
+        }
+
+        .menu {
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .logo {
+            border: 1px solid #1684e8;
+            padding: 9px 15px;
+            border-radius: 5px;
+            color: #1684e8;
+            font-weight: bold;
+        }
+
+        .right-menu {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .icon-button {
+            border: none;
+            background: transparent;
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+        /* KHUNG */
+        .container {
+            width: 100%;
+            max-width: 1050px;
+            margin: auto;
+            padding: 15px;
+        }
+
+        /* BANNER */
+        .banner {
+            min-height: 235px;
+            background: linear-gradient(110deg, #10254a, #087bd1);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            padding: 25px;
+        }
+
+        .facebook-icon {
+            width: 125px;
+            height: 125px;
+            border-radius: 50%;
+            background: #1685df;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 95px;
+            font-weight: bold;
+            margin-right: 30px;
+        }
+
+        .banner h2 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .banner h1 {
+            margin: 5px 0;
+            font-size: 50px;
+        }
+
+        .banner p {
+            margin: 5px 0;
+            font-size: 21px;
+        }
+
+        /* QR ZALO */
+        .qr-box {
+            margin-left: auto;
+            margin-right: 0;
+            width: 180px;
+            min-width: 180px;
+            text-align: center;
+            background: white;
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .zalo-title {
+            color: #087bd1;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .qr-box img {
+            width: 150px;
+            height: 150px;
+            display: block;
+            margin: auto;
+        }
+
+        .qr-box p {
+            color: #111;
+            font-size: 14px;
+            margin: 8px 0 0;
+            font-weight: bold;
+        }
+
+        /* DANH MỤC */
+        .categories {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .category {
+            flex: 1;
+            padding: 17px 8px;
+            border: none;
+            border-radius: 5px;
+            background: #191919;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .category:hover {
+            background: #333;
+        }
+
+        .category.active {
+            background: #666;
+            color: #1684e8;
+        }
+
+        /* TIÊU ĐỀ */
+        .title {
+            text-align: center;
+            font-weight: bold;
+            margin: 18px 0;
+        }
+
+        /* NHÓM */
+        .group-title {
+            background: linear-gradient(90deg, #087bd1, #00649c);
+            padding: 16px 25px;
+            border-radius: 3px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* SẢN PHẨM */
+        .products {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .product {
+            background: #202020;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .product-name {
+            background: #3b4b5e;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .product-info {
+            padding: 10px 20px 15px;
+        }
+
+        .product-info p {
+            margin: 8px 0;
+        }
+
+        .check {
+            color: #4ed33c;
+            margin-right: 7px;
+        }
+
+        .price {
+            width: 100%;
+            border: none;
+            background: #087bd1;
+            color: white;
+            padding: 10px;
+            margin-top: 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .price:hover {
+            background: #1498ff;
+        }
+
+        /* MENU TRƯỢT */
+        .side-menu {
+            position: fixed;
+            left: -280px;
+            top: 0;
+            width: 280px;
+            height: 100%;
+            background: #222;
+            z-index: 10;
+            padding: 25px;
+            transition: 0.3s;
+        }
+
+        .side-menu.open {
+            left: 0;
+        }
+
+        .side-menu h2 {
+            color: #1684e8;
+        }
+
+        .side-menu button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 13px;
+            border: none;
+            border-radius: 5px;
+            background: #333;
+            color: white;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .side-menu button:hover {
+            background: #087bd1;
+        }
+
+        .close {
+            text-align: right !important;
+            background: transparent !important;
+            font-size: 25px;
+        }
+
+        /* THANH CUỐI */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            min-height: 55px;
+            background: #181818;
+            border-top: 2px solid #333;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 14px;
+            z-index: 5;
+        }
+
+        /* GIAO DIỆN SÁNG */
+        body.light {
+            background: #eeeeee;
+            color: #111;
+        }
+
+        body.light .top,
+        body.light .footer {
+            background: white;
+            color: #111;
+        }
+
+        body.light .category {
+            background: white;
+            color: #111;
+        }
+
+        body.light .product {
+            background: white;
+            color: #111;
+        }
+
+        body.light .side-menu {
+            background: white;
+            color: #111;
+        }
+
+        body.light .icon-button {
+            color: #111;
+        }
+
+        /* ĐIỆN THOẠI */
+        @media screen and (max-width: 700px) {
+
+            .banner {
+                min-height: 180px;
+                padding: 15px;
+            }
+
+            .facebook-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 60px;
+                margin-right: 15px;
+            }
+
+            .banner h2 {
+                font-size: 17px;
+            }
+
+            .banner h1 {
+                font-size: 27px;
+            }
+
+            .banner p {
+                font-size: 13px;
+            }
+
+            .qr-box {
+                width: 105px;
+                min-width: 105px;
+                padding: 6px;
+            }
+
+            .qr-box img {
+                width: 90px;
+                height: 90px;
+            }
+
+            .zalo-title {
+                font-size: 13px;
+            }
+
+            .qr-box p {
+                font-size: 10px;
+            }
+
+            .categories {
+                flex-direction: column;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                font-size: 10px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- MENU BÊN TRÁI -->
+    <div class="side-menu" id="sideMenu">
+
+        <button class="close" onclick="dongMenu()">✕</button>
+
+        <h2>DND SHOP</h2>
+
+        <button onclick="chonMenu('Trang chủ')">
+            🏠 Trang chủ
+        </button>
+
+        <button onclick="chonMenu('Tài khoản Facebook')">
+            👤 Tài khoản Facebook
+        </button>
+
+        <button onclick="chonMenu('BM - VIA Facebook')">
+            🛡️ BM - VIA Facebook
+        </button>
+
+        <button onclick="chonMenu('Cookie Facebook')">
+            🍪 Cookie Facebook
+        </button>
+
+        <button onclick="chonMenu('Liên hệ')">
+            📞 Liên hệ:<a href="#">0379882807</a></p>
+        </button>
+
+    </div>
+
+
+    <!-- THANH TRÊN -->
+    <div class="top">
+
+        <div class="menu" onclick="moMenu()">
+            ☰
+        </div>
+
+        <div class="logo">
+            ▣ DND: 0đ
+        </div>
+
+        <div class="right-menu">
+
+            <button class="icon-button" onclick="doiGiaoDien()">
+                ☀️
+            </button>
+
+            <button class="icon-button">
+                🌙
+            </button>
+
+            <button class="icon-button" onclick="moMenu()">
+                ☰
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="container">
+
+        <!-- BANNER -->
+        <div class="banner">
+
+            <div class="facebook-icon">
+                f
+            </div>
+
+            <div>
+
+                <h2>
+                    Dịch vụ Facebook uy tín - chất lượng
+                </h2>
+
+                <h1>
+                    Dương Ngô Đồng
+                </h1>
+
+                <p>
+                    Hỗ trợ tài khoản full quyền, bảo hành dài hạn, giá rẻ
+                </p>
+
+            </div>
+
+
+            <!-- QR ZALO BÊN PHẢI -->
+            <div class="qr-box">
+
+                <div class="zalo-title">
+                    <img src="zalo.png" width="15" height="20"> ZALO
+                </div>
+
+                <img src="qr_dnd.jpg" alt="Mã QR Zalo">
+
+                <p>
+                    Quét mã QR để liên hệ
+                    <br>
+                    với chúng tôi qua Zalo
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- DANH MỤC -->
+        <div class="categories">
+
+            <button class="category active"
+                    onclick="doiDanhMuc(this, 'Tài khoản Facebook')">
+                🔵 TẤT CẢ DỊCH VỤ
+            </button>
+
+            <button class="category"
+                    onclick="doiDanhMuc(this, 'Tài khoản Facebook')">
+                👤 TÀI KHOẢN FACEBOOK
+            </button>
+
+            <button class="category"
+                    onclick="doiDanhMuc(this, 'BM - VIA Facebook')">
+                🛡️ BM - VIA FACEBOOK
+            </button>
+
+            <button class="category"
+                    onclick="doiDanhMuc(this, 'Cookie Facebook')">
+                🍪 COOKIE FACEBOOK
+            </button>
+
+        </div>
+
+
+        <!-- TIÊU ĐỀ -->
+        <div class="title">
+            DƯƠNG NGÔ ĐỒNG - DỊCH VỤ FACEBOOK
+        </div>
+
+
+        <!-- NHÓM -->
+        <div class="group-title" id="groupTitle">
+            👤 Tài khoản Facebook
+        </div>
+
+
+        <!-- SẢN PHẨM -->
+        <div class="products">
+
+            <!-- SẢN PHẨM 1 -->
+            <div class="product">
+
+                <div class="product-name">
+                    👤 Facebook Full 282
+                </div>
+
+                <div class="product-info">
+
+                    <p>
+                        <span class="check">●</span>
+                        Full thông tin, 2FA bật sẵn
+                    </p>
+
+                    <p>
+                        <span class="check">●</span>
+                        Email, SDT khôi phục đầy đủ
+                    </p>
+
+                    <p>
+                        <span class="check">●</span>
+                        Bảo hành 30 ngày
+                    </p>
+
+                    <p>
+                        <span class="check">●</span>
+                        Giá rẻ - Uy tín - Chất lượng
+                    </p>
+
+                    <button class="price"
+                            onclick="muaHang('Facebook Full 282 - 50.000đ')">
+                        50.000đ
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- SẢN PHẨM 2 -->
+            <div class="product">
+
+                <div class="product-name">
+                    👤 Facebook Full 956
+                </div>
+
+                <div class="product-info">
+
+                    <p>
+                        <span class="check">●</span>
+                        Full thông tin, 2FA bật sẵn
+                    </p>
+
+                    <p>
+                        <span class="check">●</span>
+                        Email, SDT khôi phục đầy đủ
+                    </p>
+
+                    <p>
+                        <span class="check">●</span>
+                        Bảo hành 30 ngày
+                    </p>
+
+                    <p>
+                        <span class="check">●</span>
+                        Giá rẻ - Uy tín - Chất lượng
+                    </p>
+
+                    <button class="price"
+                            onclick="muaHang('Facebook Full 956 - 120.000đ')">
+                        120.000đ
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- THANH CUỐI -->
+    <div class="footer">
+
+        <div>
+            👤 Dương Ngô Đồng
+        </div>
+
+        <div>
+            🌐 shopdnd.com
+        </div>
+
+        <div>
+            🎧 Hỗ trợ 24/7
+        </div>
+
+        <div>
+            🛡️ Bảo hành dài hạn
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* MỞ MENU */
+        function moMenu() {
+
+            document
+                .getElementById("sideMenu")
+                .classList
+                .add("open");
+
+        }
+
+
+        /* ĐÓNG MENU */
+        function dongMenu() {
+
+            document
+                .getElementById("sideMenu")
+                .classList
+                .remove("open");
+
+        }
+
+
+        /* ĐỔI DANH MỤC */
+        function doiDanhMuc(button, ten) {
+
+            var buttons =
+                document.querySelectorAll(".category");
+
+            buttons.forEach(function(btn) {
+
+                btn.classList.remove("active");
+
+            });
+
+            button.classList.add("active");
+
+            document
+                .getElementById("groupTitle")
+                .innerHTML = "👤 " + ten;
+
+        }
+
+
+        /* MUA HÀNG */
+        function muaHang(tenSanPham) {
+
+            alert(
+                "Bạn đã chọn:\n\n" +
+                tenSanPham +
+                "\n\nVui lòng liên hệ để đặt hàng."
+            );
+
+        }
+
+
+        /* MENU */
+        function chonMenu(ten) {
+
+            alert("Bạn đã chọn: " + ten);
+
+            dongMenu();
+
+        }
+
+
+        /* ĐỔI GIAO DIỆN */
+        function doiGiaoDien() {
+
+            document
+                .body
+                .classList
+                .toggle("light");
+
+        }
+
+    </script>
+
+</body>
+
+</html>
