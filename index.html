@@ -441,6 +441,20 @@
     </style>
   </head>
   <body>
+    <audio id="nhacNen" autoplay loop>
+    <source src="./nhac.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    window.addEventListener("load", function () {
+        const nhac = document.getElementById("nhacNen");
+        nhac.volume = 1;
+
+        nhac.play().catch(function (loi) {
+            console.log("Trình duyệt đã chặn tự phát nhạc:", loi);
+        });
+    });
+</script>
     <div class="glow g1"></div>
     <div class="glow g2"></div>
 
