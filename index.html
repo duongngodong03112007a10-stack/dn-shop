@@ -454,6 +454,12 @@ window.addEventListener("load", function () {
     });
 });
 </script>
+    <script>
+document.addEventListener("click", function() {
+    const nhac = document.getElementById("nhacNen");
+    nhac.play().catch(console.log);
+}, { once: true });
+</script>
     <div class="glow g1"></div>
     <div class="glow g2"></div>
 
